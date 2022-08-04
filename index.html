@@ -16,11 +16,17 @@
     </header>
     
     <main class="wrapper" id="wrapper">
-        <section class="start-page">
+        <section class="start-page" id="start" >
             <h2>Welcome to The Coding Quiz Challenge</h2>
             <p>Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize your score/time by ten seconds!</p>
-            <button class="btn" id="start-btn">Start Quiz</button>
+            <button class="btn" id="start-btn" >Start Quiz</button>
         </section>
+
+        <section class="start-page" id="questions" >
+            <h2 id="current-question"></h2>
+            <div id="current-answer"></div>
+        </section>
+
     </main>
 
     <script src="./assets/js/script.js"></script>

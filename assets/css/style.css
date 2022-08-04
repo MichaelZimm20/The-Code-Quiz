@@ -42,6 +42,9 @@
   }
 
  
+/* .hide {
+  display: none;
+} */
 
 
 
@@ -80,14 +83,20 @@
     display: flex; 
     justify-content: center;
     margin: 20px auto 0 auto;
+    padding-right: 50px;
      
   }
   .start-page p {
     /* display: flex;
-    flex-wrap: wrap;
-    justify-content: center; */
+    flex-wrap: wrap;*/
+    justify-content: center; 
     align-items: center;
     line-height: 1.5vw;
-    width: 70%;
-    margin: 0 auto 16px auto;
+    width: 55%;
+    margin: 16px auto 16px auto;
+    padding-right: 33px;
+  }
+
+  #questions {
+    display: none;
   }
