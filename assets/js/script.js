@@ -24,9 +24,7 @@ function startQuiz(event) {
   hideStartPage.style.display = "none";
 
 
-
-
-  // display: block questions to show 
+ // display: block questions to show 
   questionEl.style.display = "block";
 
   // Starts timer on click and display first question of the quiz
@@ -70,8 +68,8 @@ var timeDecreased = function () {
 
 
 var displayQuiz = function () {
-  // get current question from array
   
+  // get current question from array
   var currentQuestion = questionsObj[questionIndex];
 
   //initial number for question answer choice counter
@@ -85,8 +83,7 @@ var displayQuiz = function () {
   var currentChoices = currentQuestion.answerChoices;
   // console.log(currentChoices);
 
-  //clear our previous question
-  choicesEl.innerHTML = "";
+  
 
   // Loop to create button to add to order list for each answer choice
   for (var i = 0; i < currentChoices.length; i++) {
@@ -97,6 +94,10 @@ var displayQuiz = function () {
     choicesBtn.setAttribute("class", "answerChoice");
     choicesBtn.setAttribute("value", currentChoices[i]);
     choicesBtn.textContent = questionNumber + ". " + currentChoices[i];
+    // console.log(currentChoices[i]);
+    // console.log(currentChoices);
+    // debugger;
+
     // console.log(choicesBtn);
     // console.log(choicesBtn);
     // debugger;
@@ -106,6 +107,8 @@ var displayQuiz = function () {
 
     // counter to list the next answerchoice number
     questionNumber++;
+
+   choicesEl.addEventListener("click", clickedAnswer);
   }
 
 
@@ -166,16 +169,22 @@ var displayQuiz = function () {
 
 
 
-// this function will create right/wrong responses and control wrong answer penalties. 
-choicesEl.addEventListener("click", function(event) {
+var clickedAnswer = function (event) {
   var element = event.target;
-  var answerTarget = event.target.value;
+  var answerTarget = element.value;
   var currentQuestion = questionsObj[questionIndex];
-console.log(answerTarget);
-  console.log(element);
+
   if (answerTarget !== currentQuestion.correctAnswer) {
     
     // displays Wrong for incorrect answer and deducts a penalty time by -10
+     
+    //time penalty of (-10) for incorrect answer
+     time -= 10
+    
+     if (time <= 0 ){
+      time = 0;
+    }
+
     timerEl.textContent = time;
     checkAnswer.style.borderTop = "1px solid grey";
     checkAnswer.textContent = "Wrong!";
@@ -184,9 +193,7 @@ console.log(answerTarget);
     checkAnswer.style.fontStyle = "italic";
     checkAnswer.style.width = "75%";
      
-    //time penalty of (-10) for incorrect answer
-    time -= 10
-
+   
     
   } else {
      
@@ -201,18 +208,98 @@ console.log(answerTarget);
   }
 
 
+  
+  checkAnswer.style.visibility = "visible";
+    setTimeout(function(){
+        checkAnswer.style.visibility = "hidden";
+      }, 1000);
+  }
+
+  // questionIndex++;
+  // 
+  // 
+
+  // questionIndex++;
+  // console.log
+
+
+
+// // this function will create right/wrong responses and control wrong answer penalties. 
+// choicesEl.addEventListener("click", function(event) {
+//   var element = event.target;
+//   var answerTarget = event.target.value;
+//   var currentQuestion = questionsObj[questionIndex];
+
+//    // if the feedack div is currently hidden before answer choice click, show it when clicked
+//   setTimeout(function() {
+//     checkAnswer.setAttribute("data-state", "visible");
+//   }, 1000);
+
+//   if (answerTarget !== currentQuestion.correctAnswer) {
+    
+//     // displays Wrong for incorrect answer and deducts a penalty time by -10
+     
+//     //time penalty of (-10) for incorrect answer
+//      time -= 10
+    
+//      if (time <= 0 ){
+//       time = 0;
+//     }
+//     timerEl.textContent = time;
+//     checkAnswer.style.borderTop = "1px solid grey";
+//     checkAnswer.textContent = "Wrong!";
+//     checkAnswer.style.fontSize = "medium";
+//     checkAnswer.style.color = "red";
+//     checkAnswer.style.fontStyle = "italic";
+//     checkAnswer.style.width = "75%";
+     
+   
+    
+//   } else if (answerTarget === currentQuestion.correctAnswer){
+     
+//     //correct Answer feedback
+//      timerEl.textContent = time;
+//      checkAnswer.style.borderTop = "1px solid grey";
+//      checkAnswer.textContent = "Correct";
+//      checkAnswer.style.fontSize = "medium";
+//      checkAnswer.style.color = "green";
+//      checkAnswer.style.fontStyle = "italic";
+//      checkAnswer.style.width = "75%";
+//   }
+  
+  
+// currentQuestion.answerChoices++;
+// questionIndex++;
+// questionContent.innerHTML = "";
+// questionsObj[questionIndex].answerChoices++;
+
+
+
+
+
+  
+
+  
+ 
+  // //clear our previous question
+  //   //clear
+  //  
+  //   console.log(currentQuestion.answerChoices);
+  //   debugger;
+  //  questionContent.textContent = currentQuestion.question;
+  //  questionIndex++;
+  // // questionIndex++;
+  // console.log(currentQuestion);
+
+  
+  
+
+
+// });
 
 
 
 
 
 
-
-});
-
-
-
-
-
-// choicesEl.addEventListener("click", clickedAnswer);
 startQuizEl.addEventListener("click", startQuiz);

@@ -99,7 +99,7 @@ a:hover {
   display: none;
 }
 
-#current-answer {
+.current-answer {
   display: flex;
   justify-content: flex-start;
   flex-direction: column;
@@ -121,3 +121,4 @@ a:hover {
   opacity: 55%;
   box-shadow: 5px 5px 8px rgb(0, 0, 0), 10px 10px 8px #a89c40;
 }
+
