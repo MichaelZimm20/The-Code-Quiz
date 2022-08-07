@@ -12,7 +12,9 @@ var orderList = document.querySelector("#orderList");
 var questionContent = document.querySelector("#current-question");
 var checkAnswer = document.querySelector("#check-answer");
 var results = document.querySelector("#results");
+
 var questionIndex = 0;
+
 // Global Variables for timer function (Start and decrease)
 var time = 120;
 var intitalTimer;
@@ -71,18 +73,20 @@ var displayQuiz = function () {
   
   // get current question from array
   var currentQuestion = questionsObj[questionIndex];
+  console.log(currentQuestion);
 
   //initial number for question answer choice counter
-  var questionNumber = 1;
+  var answerNumber = 1;
 
   // add the current question to the h2
   questionContent.textContent = currentQuestion.question;
 
-
+  console.log(questionContent);
   //get answer choices respective to current question
   var currentChoices = currentQuestion.answerChoices;
   // console.log(currentChoices);
 
+  
   
 
   // Loop to create button to add to order list for each answer choice
@@ -93,7 +97,7 @@ var displayQuiz = function () {
     // set attributes for answer choices
     choicesBtn.setAttribute("class", "answerChoice");
     choicesBtn.setAttribute("value", currentChoices[i]);
-    choicesBtn.textContent = questionNumber + ". " + currentChoices[i];
+    choicesBtn.textContent = answerNumber + ". " + currentChoices[i];
     // console.log(currentChoices[i]);
     // console.log(currentChoices);
     // debugger;
@@ -106,14 +110,12 @@ var displayQuiz = function () {
     choicesEl.appendChild(choicesBtn);
 
     // counter to list the next answerchoice number
-    questionNumber++;
-
-   choicesEl.addEventListener("click", clickedAnswer);
+    answerNumber++;
   }
 
 
 }
-
+// choicesEl.addEventListener("click", clickedAnswer);
 
 // // this function will create right/wrong responses and control wrong answer penalties. 
 // var clickedAnswer = function (event) {
@@ -169,21 +171,47 @@ var displayQuiz = function () {
 
 
 
-var clickedAnswer = function (event) {
+document.addEventListener("click", function (event) {
+  //check if clicked button has class of "answerChoice”
+  if (event.target && event.target.matches(".answerChoice")) {
+
   var element = event.target;
   var answerTarget = element.value;
   var currentQuestion = questionsObj[questionIndex];
 
-  if (answerTarget !== currentQuestion.correctAnswer) {
+// console.log(answerTarget);
+// console.log(currentQuestion.correctAnswer);
+
+  if (answerTarget == currentQuestion.correctAnswer) {
     
-    // displays Wrong for incorrect answer and deducts a penalty time by -10
+    
      
-    //time penalty of (-10) for incorrect answer
+     //correct Answer feedback
+     timerEl.textContent = time;
+     checkAnswer.style.borderTop = "1px solid grey";
+     checkAnswer.textContent = "Correct";
+     checkAnswer.style.fontSize = "medium";
+     checkAnswer.style.color = "green";
+     checkAnswer.style.fontStyle = "italic";
+     checkAnswer.style.width = "75%";
+     
+   
+    
+  } else  {
+     
+   
+    // displays Wrong for incorrect answer and deducts a penalty time by -10
+     //time penalty of (-10) for incorrect answer
      time -= 10
     
      if (time <= 0 ){
       time = 0;
-    }
+     }
+    // } else if (questionIndex === questionsObj.length){
+    //   endQuiz()
+    // } else {
+    //   clickedAnswer();
+    // }
 
     timerEl.textContent = time;
     checkAnswer.style.borderTop = "1px solid grey";
@@ -192,36 +220,34 @@ var clickedAnswer = function (event) {
     checkAnswer.style.color = "red";
     checkAnswer.style.fontStyle = "italic";
     checkAnswer.style.width = "75%";
-     
-   
-    
-  } else {
-     
-    //correct Answer feedback
-     timerEl.textContent = time;
-     checkAnswer.style.borderTop = "1px solid grey";
-     checkAnswer.textContent = "Correct";
-     checkAnswer.style.fontSize = "medium";
-     checkAnswer.style.color = "green";
-     checkAnswer.style.fontStyle = "italic";
-     checkAnswer.style.width = "75%";
   }
-
 
   
   checkAnswer.style.visibility = "visible";
     setTimeout(function(){
         checkAnswer.style.visibility = "hidden";
+        document.getElementById("current-answer").textContent = "";
+        displayQuiz();
+
       }, 1000);
   }
 
-  // questionIndex++;
+  questionIndex++;
+  console.log(event.target.textContent);
+ 
+
+});
+  
+
+
+console.log(questionIndex);
+// console.log(questionIndex);
+  // console.log(questionIndex++);
+  // debugger;
   // 
   // 
 
-  // questionIndex++;
-  // console.log
-
+ 
 
 
 // // this function will create right/wrong responses and control wrong answer penalties. 
