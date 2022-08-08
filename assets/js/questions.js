@@ -8,7 +8,10 @@ var questionsObj = [
 
     {
         question: "What does the Javascript 'debugger' statement do ?",
-        answerChoices: ['debugs all the errors in the program at runtime', 'acts as a breakpoint', 'it will debug error in the current state', 'All of the above'],
+        answerChoices: ['debugs all the errors in the program at runtime', 
+        'acts as a breakpoint', 
+        'it will debug error in the current state', 
+        'All of the above'],
         correctAnswer: 'acts as a breakpoint'
     },
 
@@ -124,18 +127,6 @@ var questionsObj = [
     },
 
     {
-        question: "Which comparison operator is used check if two operands are strictly equal to one another ?",
-        answerChoices: [
-            'console.log(1 = 1.0)',
-            'if (num1 !== str2)',
-            'if("1" === 1)',
-            'console.log("hello" === "hello")'
-
-        ],
-        correctAnswer: 'console.log("hello" === "hello")'
-
-    },
-    {
         question: "JSON.stringify() turns an array into a:",
         answerChoices: [
             'Integer',
@@ -149,3 +140,5 @@ var questionsObj = [
     }
 
 ]
+
+// console.log(questionsObj.length);
