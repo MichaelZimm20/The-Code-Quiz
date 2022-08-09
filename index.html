@@ -33,22 +33,24 @@
         <section class="start-page" id="questions" >
             <h2 id="current-question"></h2>
             <div id="current-answer" class="current-answer"></div>
+             <!--Quiz answer Choice feedback: Correct/Wrong-->
+            <div class="check-answer" id="check-answer"></div> 
+
         </section>
 
-        <!--Quiz answer Choice feedback: Correct/Wrong-->
-        <div class="check-answer" id="check-answer"></div> 
+       
 
         <!--Quiz Results and New High Score-->
         <section class="start-page quiz-results" id="results">
             <h2>All Done!</h2>
-            <p>Your final score is <span id="time-left"></span></p>
-            <p>Enter initials: <form>
-                <input type="text" id="max-initials"  maxlength="3"></input>
-                <input type="submit" class="submit-btn" id="submit"  maxlength="3"></input>
-            </form></p> 
-            
+            <p>Your final score is: <span id="final-score"></span></p>
+            <form>
+                <label for="initials">Enter Initials:</label>
+                <input type="text" id="max-initials" maxlength="3">
+                <input type="submit" class="submit-btn" id="submit" maxlength="3">
+            </form>
+        
         </section>
-
 
     </main>
 

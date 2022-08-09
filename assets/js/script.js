@@ -20,9 +20,11 @@ var localScores = [];
 var time = 120;
 var intitalTimer;
 
+quizResults.style.display = "none";
 
 // Start quiz Function
 function startQuiz() {
+  // console.log(questionIndex);
   //hide start screen
   hideStartPage.style.display = "none";
 
@@ -61,7 +63,6 @@ var timeDecreased = function () {
     timerEl.textContent = time;
   } else if (time <= 0) {
     time = 0;
-    timerEl.textContent = time;
     clearInterval(intitalTimer);
     endQuiz();
   }
@@ -81,7 +82,7 @@ var displayQuiz = function () {
   
   // get current question from array
   var currentQuestion = questionsObj[questionIndex];
-  // console.log(currentQuestion);
+  console.log(currentQuestion);
   // console.log(questionsObj);
   //initial number for question answer choice counter
   var answerNumber = 1;
@@ -90,6 +91,9 @@ var displayQuiz = function () {
   questionContent.textContent = currentQuestion.question;
   questionContent.setAttribute("correct-answer-value", currentQuestion.correctAnswer);
   questionContent.setAttribute("question-index-value", questionIndex);
+
+ 
+  
 
   // console.log(questionContent);
   //get answer choices respective to current question
@@ -110,79 +114,92 @@ var displayQuiz = function () {
     choicesBtn.textContent = answerNumber + ". " + currentChoices[i];
     // console.log(currentChoices[i]);
     // console.log(currentChoices);
-    // debugger;
+  
 
     // console.log(choicesBtn);
     // console.log(choicesBtn);
-    // debugger;
+   
 
     //append buttons values to the div
     choicesEl.appendChild(choicesBtn);
 
     // counter to list the next answerchoice number
     answerNumber++;
+ 
   }
+  
 };
 
 
 
 document.addEventListener("click", function (event) {
-  
+  // console.log(questionIndex);
   //check if clicked button has class of "answerChoice”
   if (event.target && event.target.matches(".answerChoice")) {
-//.answerChoice
-  var element = event.target;
-  var answerTarget = element.value;
-  var currentQuestion = questionsObj[questionIndex];
+    //.answerChoice
+    var element = event.target;
+    var answerTarget = element.value;
+    var currentQuestion = questionsObj[questionIndex];
+    // console.log(questionIndex);
+    console.log(answerTarget);
+    console.log(currentQuestion);
 
-// console.log(answerTarget);
-// console.log(currentQuestion.correctAnswer);
+
+    if (answerTarget == currentQuestion.correctAnswer) {
+      // answerTarget == currentQuestion.correctAnswer
+      console.log("correct");
+      //correct Answer feedback
+      timerEl.textContent = time;
+      checkAnswer.style.borderTop = "1px solid grey";
+      checkAnswer.textContent = "Correct";
+      checkAnswer.style.fontSize = "medium";
+      checkAnswer.style.color = "green";
+      checkAnswer.style.fontStyle = "italic";
+      checkAnswer.style.width = "75%";
+    } else {
+
+      if (time < 0) {
+        time = 0;
+      }
+      console.log("wrong");
+
+      // displays Wrong for incorrect answer and deducts a penalty time by -10
 
 
-  if ( answerTarget == currentQuestion.correctAnswer) {
-    // answerTarget == currentQuestion.correctAnswer
+
+      //time penalty of (-10) for incorrect answer
+      time -= 10
+      timerEl.textContent = time;
+      checkAnswer.style.borderTop = "1px solid grey";
+      checkAnswer.textContent = "Wrong!";
+      checkAnswer.style.fontSize = "medium";
+      checkAnswer.style.color = "red";
+      checkAnswer.style.fontStyle = "italic";
+      checkAnswer.style.width = "75%";
+    }
+
+
+    checkAnswer.style.visibility = "visible";
+    setTimeout(function () {
+      checkAnswer.style.visibility = "hidden";
+      document.getElementById("current-answer").textContent = "";
+      displayQuiz();
+    }, 1000);
     
-     //correct Answer feedback
-     timerEl.textContent = time;
-     checkAnswer.style.borderTop = "1px solid grey";
-     checkAnswer.textContent = "Correct";
-     checkAnswer.style.fontSize = "medium";
-     checkAnswer.style.color = "green";
-     checkAnswer.style.fontStyle = "italic";
-     checkAnswer.style.width = "75%";   
-  } else  {
-     
-    if (time < 0 ){
-      time = 0;
-    } 
-
-    // displays Wrong for incorrect answer and deducts a penalty time by -10
-    
-     
-    
-    //time penalty of (-10) for incorrect answer
-    time -= 10
-    timerEl.textContent = time;
-    checkAnswer.style.borderTop = "1px solid grey";
-    checkAnswer.textContent = "Wrong!";
-    checkAnswer.style.fontSize = "medium";
-    checkAnswer.style.color = "red";
-    checkAnswer.style.fontStyle = "italic";
-    checkAnswer.style.width = "75%";
-  }
-
-  
-  checkAnswer.style.visibility = "visible";
-    setTimeout(function(){
-        checkAnswer.style.visibility = "hidden";
-        document.getElementById("current-answer").textContent = "";
-        displayQuiz();
-      }, 1000);
-  }
-
-  questionIndex++;
-  // console.log(event.target.textContent);
+   
+    // loop for my questions 
  
+  
+  questionIndex++;
+    
+  if (questionIndex >= questionsObj.length) {
+    endQuiz();
+    
+  } ;
+  
+  }
+  // console.log(event.target.textContent);
+  // console.log(questionsObj.length);
 });
   
 
@@ -190,27 +207,29 @@ document.addEventListener("click", function (event) {
 // console.log(questionIndex);
 // console.log(questionIndex);
   // console.log(questionIndex++);
-  // debugger;
-  // 
+   // 
   // 
 
 var endQuiz = function () {
   // show Quiz Results 
  // var questionId = event.target.getAttribute("question-index-value");
-if (questionIndex === questionsObj.length) {
-  
-  quizResults.style.removeProperty("display");
+
+  clearInterval(intitalTimer);
+  quizResults.style.display = "block";
   questionEl.style.display = "none";
 
-}
-console.log(currentQuestion);
+  var finalScore = document.querySelector("#final-score");
+  finalScore.textContent = time;
+ 
+  
+
   // var hidden = quizResults.setAttribute("display", "none");
   // var visible = quizResults.removeAttribute("display", "none");
 // var questionId = event.target.getAttribute("question-index-value");
   //if quiz results are hidden, display them
   // if (quizResults === hidden) {
   //   // results.style.display = "block";
-  //   clearInterval(intitalTimer);
+  //   
   //   return visible;
   // };
 

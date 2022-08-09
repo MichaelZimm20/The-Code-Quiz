@@ -117,17 +117,60 @@ a:hover {
   box-shadow: 5px 5px 8px rgb(0, 0, 0), 10px 10px 8px #a89c40;
 }
 
-/* .quiz-results {
-  display: none;
-} */
+.quiz-results {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.quiz-results p {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin:0;
+  margin-bottom: 5px;
+  padding-left: 235px;
+  
+}
+.check-answer {
+  display: flex;
+  margin: 10px auto;
+
+}
+
+form  {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .submit-btn {
   background-color: var(--primary);
   border: none;
   font-size: 16px;
   border-radius: 25px;
+  margin-left: 5px;
 }
 
 .submit-btn:hover {
   background-color: black;
   color: var(--primary);
+}
+
+.wrapper-style h1 {
+  border: 1px solid black;
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(var(--primary), rgb(206, 206, 206));
+  text-shadow: 1px 1px white;
+}
+
+.btn-wrapper{
+  display:flex;
+  justify-content: space-around;
+  margin: 0 auto;
+  width: 100%;
 }

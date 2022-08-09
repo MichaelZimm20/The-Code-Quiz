@@ -8,13 +8,12 @@ var questionsObj = [
 
     {
         question: "What does the Javascript 'debugger' statement do ?",
-        answerChoices: ['debugs all the errors in the program at runtime', 
-        'acts as a breakpoint', 
-        'it will debug error in the current state', 
-        'All of the above'],
+        answerChoices: ['debugs all the errors in the program at runtime',
+            'acts as a breakpoint',
+            'it will debug error in the current state',
+            'All of the above'],
         correctAnswer: 'acts as a breakpoint'
     },
-
     {
         question: "Which is not a Boolean logical operator used in JavaScript ?",
         answerChoices: [
@@ -139,6 +138,6 @@ var questionsObj = [
 
     }
 
-]
+];
 
 // console.log(questionsObj.length);
