@@ -247,14 +247,14 @@ var saveScore = function (event) {
 
     // save score as an object with initials, player score then push it into localScores array
     savedScores.push({
-      'initals': playerInitials,
+      'initials': playerInitials,
       'score': time
     });
 
   } else {
     savedScores = [];
     savedScores.push({
-      'initals': playerInitials,
+      'initials': playerInitials,
       'score': time
     });
   }

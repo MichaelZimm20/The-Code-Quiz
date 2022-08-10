@@ -170,7 +170,20 @@ form  {
 
 .btn-wrapper{
   display:flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
   margin: 0 auto;
-  width: 100%;
+  width: 75%;
+}
+
+.goback-btn, .clear-btn {
+  font-size: 15px;
+}
+ol {
+  width: 35%;
+  list-style: decimal inside;
+  overflow: auto;
+}
+
+li:nth-child(odd) {
+  background-color: #ded16c94;
 }
