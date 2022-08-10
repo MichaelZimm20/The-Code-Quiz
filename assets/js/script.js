@@ -24,20 +24,18 @@ quizResults.style.display = "none";
 
 // Start quiz Function
 function startQuiz() {
-  
+
   //hide start screen
   hideStartPage.style.display = "none";
 
 
- // display: block questions to show 
+  // display: block questions to show 
   questionEl.style.display = "block";
- 
+
 
   // Starts timer on click and display first question of the quiz
   timerStart();
   displayQuiz();
-
-  // return displayQuiz;
 }
 
 
@@ -66,12 +64,6 @@ var timeDecreased = function () {
     clearInterval(intitalTimer);
     endQuiz();
   }
-    
-//  else {
-//     displayQuiz();
-//   }
-    // displayhighScores(); 
-  
 };
 
 
@@ -79,10 +71,10 @@ var timeDecreased = function () {
 
 
 var displayQuiz = function () {
-  
+
   // get current question from array
   var currentQuestion = questionsObj[questionIndex];
- 
+
   //initial number for question answer choice counter
   var answerNumber = 1;
 
@@ -91,16 +83,10 @@ var displayQuiz = function () {
   questionContent.setAttribute("correct-answer-value", currentQuestion.correctAnswer);
   questionContent.setAttribute("question-index-value", questionIndex);
 
- 
-  
 
- 
   //get answer choices respective to current question
   var currentChoices = currentQuestion.answerChoices;
-  
 
-  
-  
 
   // Loop to create button to add to order list for each answer choice
   for (var i = 0; i < currentChoices.length; i++) {
@@ -111,35 +97,30 @@ var displayQuiz = function () {
     choicesBtn.setAttribute("class", "answerChoice");
     choicesBtn.setAttribute("value", currentChoices[i]);
     choicesBtn.textContent = answerNumber + ". " + currentChoices[i];
-  
-   
+
 
     //append buttons values to the div
     choicesEl.appendChild(choicesBtn);
 
     // counter to list the next answerchoice number
     answerNumber++;
- 
   }
-  
 };
 
 
 
 document.addEventListener("click", function (event) {
-  
+
   //check if clicked button has class of "answerChoice”
   if (event.target && event.target.matches(".answerChoice")) {
     //.answerChoice
     var element = event.target;
     var answerTarget = element.value;
     var currentQuestion = questionsObj[questionIndex];
-   
-
 
     if (answerTarget == currentQuestion.correctAnswer) {
       // answerTarget == currentQuestion.correctAnswer
-     
+
       //correct Answer feedback
       timerEl.textContent = time;
       checkAnswer.style.borderTop = "1px solid grey";
@@ -153,12 +134,9 @@ document.addEventListener("click", function (event) {
       if (time < 0) {
         time = 0;
       }
-     
+
 
       // displays Wrong for incorrect answer and deducts a penalty time by -10
-
-
-
       //time penalty of (-10) for incorrect answer
       time -= 10
       timerEl.textContent = time;
@@ -177,28 +155,25 @@ document.addEventListener("click", function (event) {
       document.getElementById("current-answer").textContent = "";
       displayQuiz();
     }, 1000);
-    
-   
-    // loop for my questions 
- 
-  
-  questionIndex++;
-    
-  if (questionIndex >= questionsObj.length) {
-    endQuiz();
-    
-  } ;
-  
+
+
+    // next question  
+    questionIndex++;
+
+    if (questionIndex >= questionsObj.length) {
+      endQuiz();
+    };
+
   }
- 
+
 });
-  
+
 
 
 
 var endQuiz = function () {
   // show Quiz Results 
- // var questionId = event.target.getAttribute("question-index-value");
+  // var questionId = event.target.getAttribute("question-index-value");
 
   clearInterval(intitalTimer);
   quizResults.style.display = "block";
@@ -206,14 +181,8 @@ var endQuiz = function () {
 
   var finalScore = document.querySelector("#final-score");
   finalScore.textContent = time;
- 
+
 };
-
-
-
-
-
-
 
 
 
@@ -221,27 +190,22 @@ var endQuiz = function () {
 var saveScore = function (event) {
   //get players initials from form
   var playerInitials = document.getElementById("max-initials").value;
- 
+
   // if form is null, return
   if (event === null) {
     return
   }
- 
+
   //check to see if player enter their initials if not alert them
   if (playerInitials === "") {
     alert("Please enter your initials to submit your score")
   };
 
-  
 
 
- 
-       
   // if there are no scores, set scores to an empty array and return out of the function
-   //parse into array of objects
+  //parse into array of objects
   var savedScores = JSON.parse(localStorage.getItem("localScores"));
-  
-  //  savedScores = JSON.parse(savedScores);
 
   if (savedScores !== null) {
 
@@ -259,14 +223,12 @@ var saveScore = function (event) {
     });
   }
 
-  
+
   // set new score to localStorage
   localStorage.setItem("localScores", JSON.stringify(savedScores));
 
-  
-
   //after clicking submit, form redirects to the Highscore page
-  document.location.href = "highscores.html"; 
+  document.location.href = "highscores.html";
 };
 
 

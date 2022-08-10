@@ -4,15 +4,8 @@ var clear = document.querySelector("#clearSCores");
 
 
 
-
-
-
-
-
-
-
 var loadScores = function () {
-    
+
     //retrieve high scores from localStorage
     var savedScores = JSON.parse(localStorage.getItem("localScores"));
 
@@ -37,11 +30,11 @@ var loadScores = function () {
 
 
 document.addEventListener("click", function () {
-  //clar local Storage
-  window.localStorage.removeItem("localScores");
-  //clear ordered list 
-  // var orderList = document.getElementById("highscores");
-  newScores.innerHTML = "";
+    //clear local Storage
+    window.localStorage.removeItem("localScores");
+    //clear ordered list 
+    // var orderList = document.getElementById("highscores");
+    newScores.innerHTML = "";
 
 
 });
@@ -53,11 +46,5 @@ back.addEventListener("click", function () {
     document.location.href = "index.html";
 });
 
-// var clearHighScores = function() {
-   
-// };
-
-
-// clear.addEventListener("click", clearHighScores);
 
 loadScores();

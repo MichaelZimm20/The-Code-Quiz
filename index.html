@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,8 +10,9 @@
 </head>
 
 <!--Start of Body-->
+
 <body>
-    
+
     <!--Start of Header-->
     <header>
         <div class="quizHighScores"><a href="./highscores.html">View High scores</a></div>
@@ -18,27 +20,28 @@
         <div class="timer">Time: <span id="time-left">0</span></div>
     </header>
     <!--Start of Header-->
-    
+
     <!--Start of Main Quiz Wrapper-->
     <main class="wrapper" id="wrapper">
-        
+
         <!--Section for Start page-->
-        <section class="start-page" id="start" >
+        <section class="start-page" id="start">
             <h2>Welcome to The Coding Quiz Challenge</h2>
-            <p>Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize your score/time by ten seconds!</p>
-            <button class="btn" id="start-btn" >Start Quiz</button>
+            <p>Try to answer the following code-related questions within the time limit. Keep in mind that incorrect
+                answers will penalize your score/time by ten seconds!</p>
+            <button class="btn" id="start-btn">Start Quiz</button>
         </section>
 
         <!--Section for Actual quiz Questions and Answers-->
-        <section class="start-page" id="questions" >
+        <section class="start-page" id="questions">
             <h2 id="current-question"></h2>
             <div id="current-answer" class="current-answer"></div>
-             <!--Quiz answer Choice feedback: Correct/Wrong-->
-            <div class="check-answer" id="check-answer"></div> 
+            <!--Quiz answer Choice feedback: Correct/Wrong-->
+            <div class="check-answer" id="check-answer"></div>
 
         </section>
 
-       
+
 
         <!--Quiz Results and New High Score-->
         <section class="start-page quiz-results" id="results">
@@ -49,12 +52,13 @@
                 <input type="text" id="max-initials" maxlength="3">
                 <input type="submit" class="submit-btn" id="submit" maxlength="3">
             </form>
-        
+
         </section>
 
     </main>
-    
+
     <script src="./assets/js/script.js"></script>
     <script src="./assets/js/questions.js"></script>
 </body>
+
 </html>
