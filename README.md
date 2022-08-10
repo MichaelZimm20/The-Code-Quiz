@@ -49,8 +49,31 @@ THEN I can save my initials and score
 ## Important Links
 Github Link: https://github.com/MichaelZimm20/The-Code-Quiz
 
-Deployable Live Link:
+Deployable Live Link: https://michaelzimm20.github.io/The-Code-Quiz/
+
 
 
 
 ## Screenshots
+
+![The Coding Quiz screenshots](./assets/images/start-screen-page.png "Initial page View - Start Screen") 
+<br/><br/><br/><br/><br/>
+
+![The Coding Quiz screenshots](./assets/images/start-screen2-page.png "Initial page View - Start Screen 2")
+<br/><br/><br/><br/>
+
+![The Coding Quiz screenshots](./assets/images/initial-quiz-view.png "Initial Quiz View ") 
+<br/><br/><br/><br/>
+
+![The Coding Quiz screenshots](./assets/images/correct-feedback.png "Correct Feedback") 
+<br/><br/><br/><br/>
+
+![The Coding Quiz screenshots](./assets/images/wrong-feedback.png "Wrong Feedback and Decrease Score") 
+<br/><br/><br/><br/>
+
+![The Coding Quiz screenshots](./assets/images/quiz-results.png "Quiz Results") 
+<br/><br/><br/><br/>
+
+![The Coding Quiz screenshots](./assets/images/view-scores-page.png "View HighScores page") 
+
+
