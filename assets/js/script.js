@@ -15,7 +15,7 @@ var quizResults = document.querySelector("#results");
 var submitQuiz = document.querySelector("#submit");
 
 var questionIndex = 0;
-var localScores = [];
+
 // Global Variables for timer function (Start and decrease)
 var time = 120;
 var intitalTimer;
@@ -24,7 +24,7 @@ quizResults.style.display = "none";
 
 // Start quiz Function
 function startQuiz() {
-  // console.log(questionIndex);
+  
   //hide start screen
   hideStartPage.style.display = "none";
 
@@ -82,8 +82,7 @@ var displayQuiz = function () {
   
   // get current question from array
   var currentQuestion = questionsObj[questionIndex];
-  console.log(currentQuestion);
-  // console.log(questionsObj);
+ 
   //initial number for question answer choice counter
   var answerNumber = 1;
 
@@ -95,10 +94,10 @@ var displayQuiz = function () {
  
   
 
-  // console.log(questionContent);
+ 
   //get answer choices respective to current question
   var currentChoices = currentQuestion.answerChoices;
-  // console.log(currentChoices);
+  
 
   
   
@@ -112,12 +111,7 @@ var displayQuiz = function () {
     choicesBtn.setAttribute("class", "answerChoice");
     choicesBtn.setAttribute("value", currentChoices[i]);
     choicesBtn.textContent = answerNumber + ". " + currentChoices[i];
-    // console.log(currentChoices[i]);
-    // console.log(currentChoices);
   
-
-    // console.log(choicesBtn);
-    // console.log(choicesBtn);
    
 
     //append buttons values to the div
@@ -133,21 +127,19 @@ var displayQuiz = function () {
 
 
 document.addEventListener("click", function (event) {
-  // console.log(questionIndex);
+  
   //check if clicked button has class of "answerChoice”
   if (event.target && event.target.matches(".answerChoice")) {
     //.answerChoice
     var element = event.target;
     var answerTarget = element.value;
     var currentQuestion = questionsObj[questionIndex];
-    // console.log(questionIndex);
-    console.log(answerTarget);
-    console.log(currentQuestion);
+   
 
 
     if (answerTarget == currentQuestion.correctAnswer) {
       // answerTarget == currentQuestion.correctAnswer
-      console.log("correct");
+     
       //correct Answer feedback
       timerEl.textContent = time;
       checkAnswer.style.borderTop = "1px solid grey";
@@ -161,7 +153,7 @@ document.addEventListener("click", function (event) {
       if (time < 0) {
         time = 0;
       }
-      console.log("wrong");
+     
 
       // displays Wrong for incorrect answer and deducts a penalty time by -10
 
@@ -198,17 +190,11 @@ document.addEventListener("click", function (event) {
   } ;
   
   }
-  // console.log(event.target.textContent);
-  // console.log(questionsObj.length);
+ 
 });
   
 
 
-// console.log(questionIndex);
-// console.log(questionIndex);
-  // console.log(questionIndex++);
-   // 
-  // 
 
 var endQuiz = function () {
   // show Quiz Results 
@@ -221,41 +207,67 @@ var endQuiz = function () {
   var finalScore = document.querySelector("#final-score");
   finalScore.textContent = time;
  
+};
+
+
+
+
+
+
+
+
+
+
+var saveScore = function (event) {
+  //get players initials from form
+  var playerInitials = document.getElementById("max-initials").value;
+ 
+  // if form is null, return
+  if (event === null) {
+    return
+  }
+ 
+  //check to see if player enter their initials if not alert them
+  if (playerInitials === "") {
+    alert("Please enter your initials to submit your score")
+  };
+
   
 
-  // var hidden = quizResults.setAttribute("display", "none");
-  // var visible = quizResults.removeAttribute("display", "none");
-// var questionId = event.target.getAttribute("question-index-value");
-  //if quiz results are hidden, display them
-  // if (quizResults === hidden) {
-  //   // results.style.display = "block";
-  //   
-  //   return visible;
-  // };
 
-};
+ 
+       
+  // if there are no scores, set scores to an empty array and return out of the function
+   //parse into array of objects
+  var savedScores = JSON.parse(localStorage.getItem("localScores"));
+  
+  //  savedScores = JSON.parse(savedScores);
 
+  if (savedScores !== null) {
 
+    // save score as an object with initials, player score then push it into localScores array
+    savedScores.push({
+      'initals': playerInitials,
+      'score': time
+    });
 
-var saveScore = function () {
-  var playerScore = document.getElementById("time-left");
-  playerScore.textContent = time;
+  } else {
+    savedScores = [];
+    savedScores.push({
+      'initals': playerInitials,
+      'score': time
+    });
+  }
 
+  
+  // set new score to localStorage
+  localStorage.setItem("localScores", JSON.stringify(savedScores));
 
-  // save score as an object with initials, player score then push it into tasks array
-  var playerInitials = document.getElementById("max-initials").value;
-  var newPlayerScoreObj = {
-    initals: playerInitials,
-    score: time
-  };
-  // save and push players score to localStorage
-  localScores.push(newPlayerScoreObj);
-  localStorage.setItem("localScores", JSON.stringify(localScores));
+  
 
   //after clicking submit, form redirects to the Highscore page
-  window.location.href = "highscores.html"; 
+  document.location.href = "highscores.html"; 
 };
-
 
 
 
@@ -268,23 +280,6 @@ document.addEventListener("keyup", function (event) {
 
 
 
-
-var loadScores = function () {
-  // if there are no scores, set scores to an empty array and return out of the function
-  var savedScores = localStorage.getItem("localScores");
-  if (!savedScores) {
-    return false;
-  }
-
-  //parse into array of objects
-  savedScores = JSON.parse(savedScores);
-
-};
-// console.log(endQuiz());
-
-
-
-
-
+// event listner for start button and score submit
 submitQuiz.addEventListener("click", saveScore);
 startQuizEl.addEventListener("click", startQuiz);
